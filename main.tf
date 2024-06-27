@@ -6,6 +6,10 @@ data "openstack_images_image_v2" "ubuntu2204" {
   most_recent = true 
 }
 
+ resource "openstack_compute_keypair_v2" "k8pair" {
+   name = var.keypair_name
+ }
+
 resource "openstack_objectstorage_container_v1" "dns" {
   name   = "datacentric_dns"
   content_type = "text/plain"
@@ -25,7 +29,7 @@ module "dns_servers" {
   image_id = data.openstack_images_image_v2.ubuntu2204.id
   flavor_id = var.flavor_id
   network_ports = openstack_networking_port_v2.coredns  
-  keypair_name = var.keypair_name
+  keypair_name = openstack_compute_keypair_v2.k8pair.name #var.keypair_name
   container_info = {
     name = openstack_objectstorage_container_v1.dns.name
     os_auth_url = var.openstack_api_url
