@@ -10,6 +10,19 @@ data "openstack_images_image_v2" "ubuntu2204" {
    name = var.keypair_name
  }
 
+
+resource "local_file" "k8_server_ssh_rsa_pubkey" {
+  content         = openstack_compute_keypair_v2.k8pair.public_key
+  filename        = "datacentric_k8s_key_pubkey.pem"
+  file_permission = "0600"
+}
+
+resource "local_file" "k8_server_ssh_rsa_prikey" {
+  content         = openstack_compute_keypair_v2.k8pair.private_key
+  filename        = "datacentric_k8s_key_prikey.pem"
+  file_permission = "0600"
+}
+
 resource "openstack_objectstorage_container_v1" "dns" {
   name   = "datacentric_dns"
   content_type = "text/plain"
