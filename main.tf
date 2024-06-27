@@ -9,7 +9,7 @@ data "openstack_images_image_v2" "ubuntu_22_04" {
 resource "openstack_objectstorage_container_v1" "dns" {
   name   = "dns"
   content_type = "text/plain"
-  container_read = "${'admin'}:${'admin'}"
+  container_read = "admin:admin"
 }
 
 resource "openstack_networking_port_v2" "coredns" {
