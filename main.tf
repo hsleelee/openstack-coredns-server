@@ -1,7 +1,7 @@
 ##############################################################################
 #   
 ############################################################################## 
-data "openstack_images_image_v2" "ubuntu_22_04" {
+data "openstack_images_image_v2" "ubuntu2204" {
   name        = "ubuntu-22.04-jammy-server-amd64"  #"Fedora-CoreOS-40"
   most_recent = true 
 }
@@ -22,7 +22,7 @@ resource "openstack_networking_port_v2" "coredns" {
 
 module "dns_servers" {
   source = "./modules/openstack-coredns"
-  image_id = data.openstack_images_image_v2.ubuntu_22_04.id
+  image_id = data.openstack_images_image_v2.ubuntu2204.id
   flavor_id = var.flavor_id
   network_ports = openstack_networking_port_v2.coredns
   keypair_name = var.keypair_name
