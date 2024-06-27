@@ -22,17 +22,10 @@ resource "openstack_networking_port_v2" "coredns" {
 
 module "dns_servers" {
   source = "./modules/openstack-coredns"
-
+ 
 }
 
 module "external_domain" {
   source = "./modules/openstack-zonefile"
-  domain = "mydomain.com"
-  container = openstack_objectstorage_container_v1.dns.name
-  a_records = [
-    {
-      prefix = "dev"
-      ip = "172.17.250.175" #openstack_networking_floatingip_v2.edge_reverse_proxy_floating_ip.address
-    }
-  ]
+  
 }
