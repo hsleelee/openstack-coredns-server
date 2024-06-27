@@ -21,7 +21,7 @@ resource "openstack_networking_port_v2" "coredns" {
 }
 
 module "dns_servers" {
-  source = ".modules/openstack-coredns"
+  source = "./modules/openstack-coredns"
   image_id = data.openstack_images_image_v2.ubuntu_22_04.id
   flavor_id = var.flavor_id
   network_ports = openstack_networking_port_v2.coredns
