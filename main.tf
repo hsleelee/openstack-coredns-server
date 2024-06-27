@@ -22,9 +22,10 @@ resource "openstack_networking_port_v2" "coredns" {
 
 module "dns_servers" {
   source = "./modules/openstack-coredns"
-  
+ 
 }
 
 module "external_domain" {
   source = "./modules/openstack-zonefile"
  
+}
