@@ -22,27 +22,9 @@ resource "openstack_networking_port_v2" "coredns" {
 
 module "dns_servers" {
   source = "./modules/openstack-coredns"
-  image_id = data.openstack_images_image_v2.ubuntu2204.id
-  flavor_id = var.flavor_id
-  network_ports = openstack_networking_port_v2.coredns  
-  keypair_name = var.keypair_name
-  container_info = {
-    name = openstack_objectstorage_container_v1.dns.name
-    os_auth_url = var.openstack_api_url
-    os_region_name = "RegionOne"
-    os_app_id = "admin"
-    os_app_secret = var.openstack_adm_pwd
-  }
+  
 }
 
 module "external_domain" {
   source = "./modules/openstack-zonefile"
-  domain = "mydomain.com"
-  container = openstack_objectstorage_container_v1.dns.name
-  a_records = [
-    {
-      prefix = "dev"
-      ip = "172.17.250.175" #openstack_networking_floatingip_v2.edge_reverse_proxy_floating_ip.address
-    }
-  ]
-}
+ 
