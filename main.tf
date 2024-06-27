@@ -16,7 +16,7 @@ resource "openstack_networking_port_v2" "coredns" {
   count          = 1
   name           = "coredns-${count.index + 1}"
   network_id     = "a0fd76a8-5a65-46e1-9579-7221276cd321" #module.reference_infra.networks.internal.id
-  security_group_ids = ["01b563a8-48e8-43e8-88e4-177bf612a1df"]
+  security_group_ids = ["01b563a8-48e8-43e8-88e4-177bf612a1df","34938fd3-96b9-417b-81d6-2248c9ecceb6"]
   admin_state_up = true
 }
 

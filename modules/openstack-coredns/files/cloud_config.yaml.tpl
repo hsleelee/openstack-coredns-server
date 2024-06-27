@@ -97,10 +97,10 @@ packages:
   - python3-pip
 runcmd:
   - echo "nameserver 8.8.8.8" >> /etc/resolv.conf  
-  - sudo apt-get update
-  - sudo apt install python3-pip -y
-  - sudo apt-get update
-  - sudo apt-get update --fix-missing
+  #- sudo apt-get update
+  #- sudo apt install python3-pip -y
+  #- sudo apt-get update
+  #- sudo apt-get update --fix-missing
   #Setup zonefiles refresher service
   - pip3 install python-swiftclient==3.10.0 
   - pip3 install python-keystoneclient==4.1.0
