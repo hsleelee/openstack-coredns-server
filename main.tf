@@ -37,12 +37,5 @@ module "dns_servers" {
 
 module "external_domain" {
   source = "./modules/openstack-zonefile"
-  domain = "mydomain.com"
-  container = openstack_objectstorage_container_v1.dns1.name
-  a_records = [
-    {
-      prefix = "dev"
-      ip = "172.17.250.175" #openstack_networking_floatingip_v2.edge_reverse_proxy_floating_ip.address
-    }
-  ]
+ 
 }
