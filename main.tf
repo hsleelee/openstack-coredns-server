@@ -24,7 +24,7 @@ module "dns_servers" {
   source = "./modules/openstack-coredns"
   image_id = data.openstack_images_image_v2.ubuntu2204.id
   flavor_id = var.flavor_id
-  network_ports = [openstack_networking_port_v2.coredns[count.index]]  
+  network_ports = openstack_networking_port_v2.coredns  
   keypair_name = var.keypair_name
   container_info = {
     name = openstack_objectstorage_container_v1.dns.name
