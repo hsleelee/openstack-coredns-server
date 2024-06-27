@@ -97,6 +97,10 @@ packages:
   - python3-pip
 runcmd:
   - echo "nameserver 8.8.8.8" >> /etc/resolv.conf  
+  - sudo apt-get update
+  - sudo apt install python3-pip -y
+  - sudo apt-get update
+  - sudo apt-get update --fix-missing
   #Setup zonefiles refresher service
   - pip3 install python-swiftclient==3.10.0 
   - pip3 install python-keystoneclient==4.1.0
@@ -111,11 +115,11 @@ runcmd:
   - systemctl enable coredns
   - systemctl start coredns
   #Install prometheus node exporter as a binary managed as a systemd service
-  - wget -O /opt/node_exporter.tar.gz https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
-  - mkdir -p /opt/node_exporter
-  - tar zxvf /opt/node_exporter.tar.gz -C /opt/node_exporter
-  - cp /opt/node_exporter/node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
-  - chown node-exporter:node-exporter /usr/local/bin/node_exporter
-  - rm -r /opt/node_exporter && rm /opt/node_exporter.tar.gz
-  - systemctl enable node-exporter
-  - systemctl start node-exporter
+  # - wget -O /opt/node_exporter.tar.gz https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+  # - mkdir -p /opt/node_exporter
+  # - tar zxvf /opt/node_exporter.tar.gz -C /opt/node_exporter
+  # - cp /opt/node_exporter/node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
+  # - chown node-exporter:node-exporter /usr/local/bin/node_exporter
+  # - rm -r /opt/node_exporter && rm /opt/node_exporter.tar.gz
+  # - systemctl enable node-exporter
+  # - systemctl start node-exporter

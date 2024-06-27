@@ -7,7 +7,7 @@ data "openstack_images_image_v2" "ubuntu2204" {
 }
 
 resource "openstack_objectstorage_container_v1" "dns" {
-  name   = "dns"
+  name   = "datacentric_folder"
   content_type = "text/plain"
   container_read = "admin:admin"
 }
